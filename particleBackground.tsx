@@ -75,7 +75,7 @@ export function createParticleBackground(
   let running = false;
   let destroyed = false;
 
-  function build() {
+  const build = () => {
     const count = Math.min(Math.max(Math.round((w * h) / density), minParticles), maxParticles);
     particles = Array.from({ length: count }, () => ({
       x: Math.random() * w,
@@ -86,7 +86,7 @@ export function createParticleBackground(
     }));
   }
 
-  function resize() {
+  const resize = () => {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     w = canvas.clientWidth;
     h = canvas.clientHeight;
@@ -94,9 +94,9 @@ export function createParticleBackground(
     canvas.height = Math.round(h * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     build();
-  }
+  };
 
-  function draw() {
+  const draw = () => {
     const { dot, line } = palette(getTheme());
     ctx.clearRect(0, 0, w, h);
 
